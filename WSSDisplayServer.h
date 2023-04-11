@@ -26,11 +26,8 @@ class WSSDisplayServer : public WebServer {
 
      void begin();
 
-     void onNotFound(THandlerFunction fn);
-
   private:
 
-     THandlerFunction         notFoundFunction;
      WebSocketsServer         wsServer;
      int                      connectionCount;
      DisplayHandler          &displayHandler;
@@ -47,9 +44,9 @@ class WSSDisplayServer : public WebServer {
                           uint8_t * payload,
                           size_t length);
 
-     static bool handleDisplayURLS(String path);
+     static void onIndexHtml();
+     static void onDisplayJS();
      
-     static void handleNotFound();
 };
 
 

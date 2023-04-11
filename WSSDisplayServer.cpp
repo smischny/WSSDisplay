@@ -23,21 +23,13 @@ void WSSDisplayServer::handleClient() {
 
 void WSSDisplayServer::begin() {
 
-  WebServer::onNotFound(handleNotFound);
-
+  on("/",HTTP_GET,onIndexHtml);
+  on("/index.html",HTTP_GET,onIndexHtml);
+  on("/display.js",HTTP_GET,onDisplayJS);
   WebServer::begin();
 
   wsServer.begin();
   wsServer.onEvent(sWssEventHandler);
-}
-
-void WSSDisplayServer::onNotFound(THandlerFunction fn) {
-  //
-  // Since we have installed our own not
-  // found funciton handler, save
-  // off this function and call it from ours
-  //
-  this->notFoundFunction = fn;
 }
 
 void WSSDisplayServer::sWssEventHandler(uint8_t num, WStype_t type,
@@ -63,31 +55,15 @@ void WSSDisplayServer::wssEventHandler(uint8_t num, WStype_t type,
     displayHandler.text(wsServer, num, payload, length);
     break;
   }
-};
+}
 
-bool WSSDisplayServer::handleDisplayURLS(String path) {
-
-  if (path.equals("/index.html") || path.equals("/")) {
+void WSSDisplayServer::onIndexHtml() {
     String text(FPSTR(indexHtml));
     instance->send(200, "text/html", text);
-    return true;
-  }
-  if (path.equals("/display.js")) {
+}
+
+void WSSDisplayServer::onDisplayJS() {
     String text(FPSTR(displayJS));
     instance->send(200, "text/javascript", text);
-    return true;
-  }
-  return (false);
-};
+}
 
-void WSSDisplayServer::handleNotFound() {
-  if (instance) {
-      if (!handleDisplayURLS(instance->uri())) {
-        if (instance->notFoundFunction) {
-          instance->notFoundFunction();
-        } else {
-          instance->send(404, "text/plain", "FileNotFound");
-        }
-      }
-   }
-};
