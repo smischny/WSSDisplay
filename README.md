@@ -4,6 +4,7 @@ This project emulates a TFT in a Web browser.  A WebServer and WebSocketsServer 
 ## Dependancies:
  - [JSONString](https://github.com/smischny/JSONString.git)
  - [RemoteDisplay](https://github.com/smischny/RemoteDisplay.git)
+ - [WebSockets](https://github.com/Links2004/arduinoWebSockets.git)
 
 ## Security
 No security is provided by default.   You could configure the WebServer and WebSocketsServer to require authentication/encrption.
@@ -16,5 +17,3 @@ ESP32
 
 ## Author:
 Toby Smischny
-
-
