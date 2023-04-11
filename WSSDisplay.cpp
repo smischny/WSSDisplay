@@ -876,7 +876,7 @@ void WSSDisplay::getTextBounds(const char *string, int16_t x, int16_t y,
 
    *x1 = x;  
    *y1 = y;
-   *w = strlen(string)*8*(fontSize-1);
+   *w = strlen(string)*4*fontSize;
    *h = 8 * fontSize;
 }
 
