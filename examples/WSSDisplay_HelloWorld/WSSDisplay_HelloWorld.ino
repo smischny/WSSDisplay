@@ -7,8 +7,8 @@ WSSDisplay         display;
 WSSDisplayServer   displayServer(display);
 
 // Uncomment and fill in your Wifi SID/Password here
-//#define WIFI_SID        
-//#define WIFI_PASSWORD   
+//#define WIFI_SID        "YOUR_SID"
+//#define WIFI_PASSWORD   "YOUR_PASSWORD"
 
 #if !defined(WIFI_SID) || !defined(WIFI_PASSWORD)
     #error You must define WIFI_SID and WIFI_PASSWORD
