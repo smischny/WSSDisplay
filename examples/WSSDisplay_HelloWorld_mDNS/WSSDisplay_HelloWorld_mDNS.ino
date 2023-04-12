@@ -4,6 +4,20 @@
 #include <WSSDisplayServer.h>
 #include <WSSDisplay.h>
 
+
+//
+// My notes on enabling mDNS.   MDNS is not supported on Android 
+// devices except for applications (ie doesn't work in the browser).
+//
+// If mDNS doesn't work on Windows, run the following as administrator 
+// and reboot
+//
+// REG ADD "HKLM\Software\Policies\Microsoft\Windows NT\DNSClient" /V "EnableMulticast" /D "0" /T REG_DWORD /F
+//
+// If mDNS doesn't work on Ubuntu 22.04, do the following and reboot:
+//   Add MulticastDNS=true in [Network] section of /etc/systemd/networkd.conf
+//
+
 WSSDisplay         display;
 WSSDisplayServer   displayServer(display);
 
