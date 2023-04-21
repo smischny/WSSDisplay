@@ -35,6 +35,7 @@ WSSDisplay::WSSDisplay(int16_t w, int16_t h,WebSocketsServer *wss,uint8_t client
     wss(wss) {
 
     refreshDisplayFunc  = NULL;
+    textFunc  = NULL;
 
     displayWidth = w;
     displayHeight = h;    
@@ -899,10 +900,12 @@ void WSSDisplay::disconnected(WebSocketsServer &server,
 }
 
 void WSSDisplay::text(WebSocketsServer &server,
-                      uint8_t number,
-                      uint8_t * payload,
-                      size_t length) {
-   Serial.println((char *)payload);
+                      uint8_t  number,
+                      uint8_t *payload,
+                      size_t   length) {
+   if (textFunc) {
+       textFunc(number,payload,length);
+   }
 }
 
 

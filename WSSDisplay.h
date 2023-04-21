@@ -111,6 +111,16 @@ class WSSDisplay : public Print, public DisplayHandler {
        refreshDisplayFunc = func;
   }
 
+  //
+  // Set a callback function to receive the WSS Text messages
+  //
+  void textReceivedFunction(void (*func)(uint8_t number, uint8_t * payload, size_t length)) {
+       textFunc = func;
+  }
+
+  //
+  // Send some javascript to the browser to execute
+  //
   void sendJavaScript(uint8_t clientNum,const char *script);
 
    private:
@@ -135,6 +145,7 @@ class WSSDisplay : public Print, public DisplayHandler {
        JSONString        flushMessage;
 
        void (*refreshDisplayFunc)(uint8_t);
+       void (*textFunc)(uint8_t number, uint8_t * payload, size_t length);
 };
 
 // New color definitions.  thanks to Bodmer

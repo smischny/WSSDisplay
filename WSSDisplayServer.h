@@ -46,6 +46,7 @@ class WSSDisplayServer : public WebServer {
 
      static void onIndexHtml();
      static void onDisplayJS();
+     static void onNotFound();
      
 };
 

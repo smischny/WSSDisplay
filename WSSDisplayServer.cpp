@@ -26,6 +26,7 @@ void WSSDisplayServer::begin() {
   on("/",HTTP_GET,onIndexHtml);
   on("/index.html",HTTP_GET,onIndexHtml);
   on("/display.js",HTTP_GET,onDisplayJS);
+  on("/favicon.ico",HTTP_GET,onNotFound);
   WebServer::begin();
 
   wsServer.begin();
@@ -65,5 +66,9 @@ void WSSDisplayServer::onIndexHtml() {
 void WSSDisplayServer::onDisplayJS() {
     String text(FPSTR(displayJS));
     instance->send(200, "text/javascript", text);
+}
+
+void WSSDisplayServer::onNotFound() {
+    instance->send(404, "text/plain", "FileNotFound");
 }
 
